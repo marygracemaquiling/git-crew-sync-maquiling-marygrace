@@ -3,18 +3,18 @@ function isValidShift(hours) {
 }
 
 function calculatePay(hours, rate) {
-HEAD
-  const totalPay = hours * rate;
-  return Math.round(totalPay * 100) / 100;
+  let totalPay = 0;
 
   if (hours > 8) {
     const regularPay = 8 * rate;
     const overtimeHours = hours - 8;
     const overtimePay = overtimeHours * (rate * 1.5);
-    return regularPay + overtimePay;
+    totalPay = regularPay + overtimePay;
+  } else {
+    totalPay = hours * rate;
   }
-  return hours * rate;
-origin/feature/overtime-pay
+
+  return Math.round(totalPay * 100) / 100;
 }
 
 module.exports = { isValidShift, calculatePay };
